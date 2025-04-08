@@ -68,14 +68,14 @@ export default function Quiz({ questions }) {
     <div id="quiz">
       <div id="question">
         <QuestionTimer
-          key={`timer-${activeQuestionIndex}`}
+          key={`${activeQuestionIndex}-${answerState}`}
           timeOut={10000}
           onTimeOut={handleTimeOut}
           state={timerState}
           isCorrect={isCorrect}
         />
         <Question
-          key={`question-${activeQuestionIndex}`}
+          key={activeQuestionIndex}
           question={currentQuestion}
           answers={shuffledAnswers}
           selectedAnswer={selectedAnswer}
