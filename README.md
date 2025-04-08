@@ -22,7 +22,7 @@ This is a responsive and interactive quiz web app built with **React**. It featu
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/kevinsultana/quizApp.git
 
 # Install dependencies
 npm install
