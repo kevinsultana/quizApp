@@ -1,5 +1,4 @@
-import questions from "../questions";
-export default function Summary({ userAnswers }) {
+export default function Summary({ userAnswers, questions }) {
   const skippedQuestions =
     (userAnswers.filter((answer) => answer === null).length /
       userAnswers.length) *

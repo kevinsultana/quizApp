@@ -1,12 +1,33 @@
+import { useState } from "react";
 import Header from "./component/Header";
 import Quiz from "./component/Quiz";
+import TopicSelection from "./component/TopicSelection";
+import questions from "./questions";
+import generalQuestions from "./general-questions";
 
 function App() {
+  const [selectedTopic, setSelectedTopic] = useState(null);
+
+  const handleSelectTopic = (topic) => {
+    setSelectedTopic(topic);
+  };
+
+  const questionsQuiz =
+    selectedTopic === "react"
+      ? questions
+      : selectedTopic === "general"
+      ? generalQuestions
+      : [];
+
   return (
     <>
-      <Header />
+      <Header selectedTopic={selectedTopic} />
       <main>
-        <Quiz />
+        {selectedTopic === null ? (
+          <TopicSelection onSelectTopic={handleSelectTopic} />
+        ) : (
+          <Quiz questions={questionsQuiz} />
+        )}
       </main>
     </>
   );

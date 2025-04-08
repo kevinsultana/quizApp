@@ -387,6 +387,33 @@ header h1 {
   }
 }
 
+#topic-selection {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+#topic-selection .topics {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#topic-selection button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  background-color: #6cb7f5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#topic-selection button:hover {
+  background-color: #9d5af5;
+}
+
 @media (max-width: 1024px) {
   html {
     font-size: 90%;

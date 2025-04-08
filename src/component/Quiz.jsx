@@ -1,10 +1,9 @@
 import React, { useCallback, useState, useMemo } from "react";
-import questions from "./../questions";
 import QuestionTimer from "./QuestionTimer";
 import Question from "./Question";
 import Summary from "./Summary";
 
-export default function Quiz() {
+export default function Quiz({ questions }) {
   const [userAnswers, setUserAnswers] = useState([]);
   const [answerState, setAnswerState] = useState("");
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -12,6 +11,8 @@ export default function Quiz() {
   const activeQuestionIndex = userAnswers.length;
   const currentQuestion = questions[activeQuestionIndex];
   const quizComplete = activeQuestionIndex >= questions.length;
+
+  // console.log(questions);
 
   const shuffledAnswers = useMemo(() => {
     if (!currentQuestion) return [];
@@ -51,30 +52,32 @@ export default function Quiz() {
 
   const handleTimeOut = useCallback(() => {
     if (answerState !== "") return;
-    setUserAnswers((prev) => [...prev, null]); // skip tanpa jawaban
+    setUserAnswers((prev) => [...prev, null]);
   }, [answerState]);
 
   if (quizComplete) {
-    return <Summary userAnswers={userAnswers} />;
+    return <Summary userAnswers={userAnswers} questions={questions} />;
   }
 
   return (
     <div id="quiz">
       <div id="question">
         <QuestionTimer
-          key={activeQuestionIndex + answerState}
+          key={`timer-${activeQuestionIndex}`}
           timeOut={10000}
           onTimeOut={handleTimeOut}
           state={timerState}
           isCorrect={isCorrect}
         />
         <Question
+          key={`question-${activeQuestionIndex}`}
           question={currentQuestion}
           answers={shuffledAnswers}
           selectedAnswer={selectedAnswer}
           answerState={answerState}
           onSelectAnswer={handleAnswer}
           activeQuestionIndex={activeQuestionIndex}
+          questions={questions}
         />
       </div>
     </div>

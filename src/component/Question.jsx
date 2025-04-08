@@ -1,5 +1,4 @@
 import React from "react";
-import questions from "../questions";
 export default function Question({
   question,
   answers,
@@ -7,6 +6,7 @@ export default function Question({
   answerState,
   onSelectAnswer,
   activeQuestionIndex,
+  questions,
 }) {
   const getClass = (answer) => {
     if (!selectedAnswer) return "";
@@ -16,7 +16,8 @@ export default function Question({
     const isSelected = answer === selectedAnswer;
 
     if (isSelected) {
-      return answerState === "correct" ? "selected correct" : "selected wrong";
+      if (answerState === "answered") return "selected";
+      return answerState === "correct" ? "correct" : "wrong";
     }
 
     if (answerState === "wrong" && isCorrectAnswer) {
