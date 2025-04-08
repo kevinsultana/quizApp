@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo } from "react";
+import React, { useCallback, useState, useMemo, useEffect } from "react";
 import QuestionTimer from "./QuestionTimer";
 import Question from "./Question";
 import Summary from "./Summary";
@@ -54,6 +54,11 @@ export default function Quiz({ questions }) {
     if (answerState !== "") return;
     setUserAnswers((prev) => [...prev, null]);
   }, [answerState]);
+
+  useEffect(() => {
+    setSelectedAnswer(null);
+    setAnswerState("");
+  }, [activeQuestionIndex]);
 
   if (quizComplete) {
     return <Summary userAnswers={userAnswers} questions={questions} />;
