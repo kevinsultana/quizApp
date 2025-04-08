@@ -16,6 +16,8 @@ export default function Summary({ userAnswers, questions }) {
       userAnswers.length) *
     100;
 
+  const isIncorrect = 100 - skippedQuestions.toFixed(2) - isCorrect.toFixed(2);
+
   return (
     <div id="summary">
       <img src="/quiz-complete.png" alt="logo" />
@@ -30,9 +32,7 @@ export default function Summary({ userAnswers, questions }) {
           <span className="text">answerd correctly</span>
         </p>
         <p>
-          <span className="number">
-            {100 - skippedQuestions.toFixed(2) - isCorrect.toFixed(2)}%
-          </span>
+          <span className="number">{isIncorrect.toFixed(0)}%</span>
           <span className="text">answer incorrectly</span>
         </p>
       </div>
