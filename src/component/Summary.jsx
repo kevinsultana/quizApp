@@ -31,7 +31,7 @@ export default function Summary({ userAnswers, questions }) {
         </p>
         <p>
           <span className="number">
-            {100 - skippedQuestions.toFixed(0) - isCorrect.toFixed(0)}%
+            {100 - skippedQuestions.toFixed(2) - isCorrect.toFixed(2)}%
           </span>
           <span className="text">answer incorrectly</span>
         </p>
